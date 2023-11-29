@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'dj_rest_auth.registration',
-    'core'
+    'core',
+    'settings'
 ]
 SITE_ID = 1
 MIDDLEWARE = [
@@ -145,26 +146,16 @@ SIMPLE_JWT = {
 }
 
 REST_FRAMEWORK = {
-    
-    # 'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
-   'DEFAULT_AUTHENTICATION_CLASSES': (
-        # 'rest_framework.authentication.SessionAuthentication',
-        'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.AllowAny',
     ),
-     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-        
+    'DEFAULT_AUTHENTICATION_CLASSES': (),
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
     ),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    # 'DEFAULT_PAGINATION_CLASS': 'location.pagination.LbsPagination',
     'PAGE_SIZE': 100,
-    'DEFAULT_RENDERER_CLASSES': (
-            'rest_framework.renderers.JSONRenderer',
-            'rest_framework.renderers.BrowsableAPIRenderer',
-            # 'rest_framework_csv.renderers.CSVRenderer',
-        ),
-    
-    
 }
 AUTHENTICATION_BACKENDS = [
     # allauth specific authentication methods, such as login by e-mail
